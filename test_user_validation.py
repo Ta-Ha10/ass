@@ -3,14 +3,11 @@ from user_validation import UserValidation
 
 
 class TestValidateEmail(unittest.TestCase):
-    # Email Validation Test Cases (10)
 
     def test_valid_email_returns_true(self):
 
         email = "user@example.com"
-        # Act
         result = UserValidation.validate_email(email)
-        # Assert
         self.assertTrue(result)
 
     def test_missing_at_symbol_returns_false(self):
@@ -42,7 +39,6 @@ class TestValidateEmail(unittest.TestCase):
 
 
 class TestValidateUsername(unittest.TestCase):
-    # Username Validation Test Cases (8)
 
     def test_valid_username_returns_true(self):
         self.assertTrue(UserValidation.validate_username("taha-mahmoud"))
@@ -70,8 +66,6 @@ class TestValidateUsername(unittest.TestCase):
 
 
 class TestValidatePhoneNumber(unittest.TestCase):
-    # Egyptian Phone Number Validation (12)
-
     def test_valid_vodafone_number_returns_true(self):
         self.assertTrue(UserValidation.validate_phone_number("01012345678"))
 
@@ -110,10 +104,7 @@ class TestValidatePhoneNumber(unittest.TestCase):
 
 
 class TestValidateNationalId(unittest.TestCase):
-    # Egyptian National ID Validation (10)
-
     def test_valid_national_id_returns_true(self):
-        # 14 digits: century=2, month=12, day=25, governorate=12 (valid)
         self.assertTrue(UserValidation.validate_national_id("29812251234567"))
 
     def test_too_short_national_id_returns_false(self):
@@ -126,15 +117,12 @@ class TestValidateNationalId(unittest.TestCase):
         self.assertFalse(UserValidation.validate_national_id("2981225AB34567"))
 
     def test_invalid_century_code_returns_false(self):
-        # starts with 1 (invalid according to test spec)
         self.assertFalse(UserValidation.validate_national_id("19812251234567"))
 
     def test_invalid_month_returns_false(self):
-        # month 13 -> invalid
         self.assertFalse(UserValidation.validate_national_id("29813251234567"))
 
     def test_invalid_day_returns_false(self):
-        # day 32 -> invalid
         self.assertFalse(UserValidation.validate_national_id("29812323234567"))
 
     def test_invalid_governorate_code_returns_false(self):
