@@ -10,7 +10,6 @@ class UserValidation:
         email = email.strip()
         if not email:
             return False
-        # simple, practical regex (rejects single-letter TLDs, rejects spaces)
         pattern = re.compile(r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
         return bool(pattern.fullmatch(email))
 
